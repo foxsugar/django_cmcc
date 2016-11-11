@@ -54,16 +54,15 @@ def sendMsg_cmcc(cell_num):
                'Connection': 'Keep-Alive',
                'Content-Encoding': 'UTF-8',
                }
-    handle_request_headers(cell_num, headers)
+    # handle_request_headers(cell_num, headers)
 
-    try:
-        request = urllib.request.Request(url, postdata, headers=headers, method='POST')
-        cj = get_coodiejar(cell_num)
-        opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
-        response = opener.open(request)
-        return handle_response(cell_num, response)
-    except Exception as e:
-        print(e)
+    request = urllib.request.Request(url, postdata, headers=headers, method='POST')
+    cj = get_coodiejar(cell_num)
+    opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
+    response = opener.open(request)
+    return handle_response(cell_num, response)
+
+
 
 
 def verify_msg_cmcc(cell_num, passwd, msg):
@@ -105,6 +104,7 @@ def get_detail_cmcc(cell_num, tmem_type, month, page, unit):
     cj = get_coodiejar(cell_num)
     opener = urllib.request.build_opener(urllib.request.HTTPCookieProcessor(cj))
     response = opener.open(request)
+
     return handle_response(cell_num, response)
 
 
@@ -155,7 +155,7 @@ def create_headers(cell_num):
                'Connection': 'Keep-Alive',
                'Content-Encoding': 'UTF-8',
                }
-    handle_request_headers(cell_num, headers)
+    # handle_request_headers(cell_num, headers)
     return headers
 
 
@@ -180,7 +180,7 @@ def get_req_root():
 
 
 def get_in_recent_month(num):
-    """获得最近的6个月字符串"""
+    """获得最近的num个月字符串"""
     month_list = []
     now = datetime.datetime.now()
     now_year = int(now.strftime('%Y'))
