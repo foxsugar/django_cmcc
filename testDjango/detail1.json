@@ -1,0 +1,40 @@
+{
+  "cid": "lzte60fTxZoayKbS49UjwCiDlrpz3cJKdviiNxyUqL93NdTkd9U657aRgn/AXgUbcRNoRiLQvKVB/oQWmJKpEwCQBBIJ6UQoar5F7SAeXJ8FmWYFf7jpqMcbcxMWG5l1",
+  "cv": "2.3.0",
+  "en": "0",
+  "reqBody": {
+    "billMonth": "2016-10",
+    "cellNum": "13821033039",
+    "page": 1,
+    "tmemType": "01",
+    "unit": 200
+  },
+  "sn": "EVA-TL00",
+  "sp": "1080x1812",
+  "st": "1",
+  "sv": "6.0",
+  "t": "bd0f2906d3d805c2601654a66779cb0a"
+}
+
+
+
+
+{
+	"retCode": "000000",
+	"retDesc": "SUCCESS",
+	"rspBody": {
+		"otime": "2016-11-10 16:01:01",
+		"tmemType": "01",
+		"totalCount": "1",
+		"billCycleStartDate": "2016-10-01",
+		"billCycleEndDate": "2016-10-31",
+		"fixedExpList": [{
+			"tmemRecord": {
+				"buckleFeTime": "201610",
+				"disposable": "2016-10-01 - 2016-10-31",
+				"mealName": "动感地带上网套餐月租费",
+				"fee": "18.00"
+			}
+		}]
+	}
+}

@@ -1,0 +1,191 @@
+{
+  "cid": "lzte60fTxZoayKbS49UjwCiDlrpz3cJKdviiNxyUqL93NdTkd9U657aRgn/AXgUbcRNoRiLQvKVB/oQWmJKpEwCQBBIJ6UQoar5F7SAeXJ8FmWYFf7jpqMcbcxMWG5l1",
+  "cv": "2.3.0",
+  "en": "0",
+  "reqBody": {
+    "billMonth": "2016-11",
+    "cellNum": "13821033039",
+    "page": 1,
+    "tmemType": "02",
+    "unit": 200
+  },
+  "sn": "EVA-TL00",
+  "sp": "1080x1812",
+  "st": "1",
+  "sv": "6.0",
+  "t": "bd0f2906d3d805c2601654a66779cb0a"
+}
+
+==================================================================
+
+        	POST /biz-orange/BN/queryDetail/getDetail HTTP/1.1
+Content-Type	application/Json
+Content-Length	346
+Host	clientaccess.10086.cn
+Connection	Keep-Alive
+Cookie2	$Version=1
+Accept-Encoding	gzip
+Cookie	JSESSIONID=97c4c886-929a-4845-b5be-5a8398e3482b; UID=1d7ce7988ad04648ad5a925797f4ef93; Comment=SessionServer-unity; Path=/; Secure
+Content-Encoding	UTF-8
+
+
+==================================================================
+
+
+
+{
+	"retCode": "000000",
+	"retDesc": "SUCCESS",
+	"rspBody": {
+		"otime": "2016-11-10 15:58:33",
+		"tmemType": "02",
+		"totalCount": "12",
+		"billCycleStartDate": "2016-11-01",
+		"billCycleEndDate": "2016-11-30",
+		"callList": [{
+			"tmemRecord": {
+				"startTime": "2016-11-09 10:34:34",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "13034378866",
+				"commTime": "57秒",
+				"commTimeH5": "00:00:57",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-08 14:26:46",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "04000177700",
+				"commTime": "8秒",
+				"commTimeH5": "00:00:08",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-07 09:32:31",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "18722173677",
+				"commTime": "5秒",
+				"commTimeH5": "00:00:05",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-07 09:07:15",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "01059092291",
+				"commTime": "34秒",
+				"commTimeH5": "00:00:34",
+				"commType": "京津冀通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-04 19:13:53",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "13820337463",
+				"commTime": "15秒",
+				"commTimeH5": "00:00:15",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-04 17:37:40",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "18722173677",
+				"commTime": "13秒",
+				"commTimeH5": "00:00:13",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-04 17:00:46",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "13820337463",
+				"commTime": "46秒",
+				"commTimeH5": "00:00:46",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-04 11:26:45",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "15022347665",
+				"commTime": "31秒",
+				"commTimeH5": "00:00:31",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-04 11:20:45",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "15122408418",
+				"commTime": "11秒",
+				"commTimeH5": "00:00:11",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-02 13:56:40",
+				"commPlac": "天津市",
+				"commMode": "主叫",
+				"eachOtherNm": "10086",
+				"commTime": "2分8秒",
+				"commTimeH5": "00:02:08",
+				"commType": "本地通话",
+				"mealFavorable": "",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-02 11:25:53",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "13920233609",
+				"commTime": "7秒",
+				"commTimeH5": "00:00:07",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-11-02 11:24:08",
+				"commPlac": "天津市",
+				"commMode": "被叫",
+				"eachOtherNm": "13920233609",
+				"commTime": "2秒",
+				"commTimeH5": "00:00:02",
+				"commType": "本地通话",
+				"mealFavorable": "上网套餐",
+				"commFee": "0.00"
+			}
+		}]
+	}
+}

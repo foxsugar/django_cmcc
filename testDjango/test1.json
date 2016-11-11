@@ -1,0 +1,91 @@
+{
+  "retCode": "000000",
+  "retDesc": "SUCCESS",
+  "rspBody": {
+    "otime": "2016-11-11 17:12:36",
+    "tmemType": "02",
+    "totalCount": "16",
+    "billCycleStartDate": "2016-10-01",
+    "billCycleEndDate": "2016-10-31",
+    "callList": [
+      {
+        "tmemRecord": {
+          "startTime": "2016-10-27 17:28:38",
+          "commPlac": "天津市",
+          "commMode": "被叫",
+          "eachOtherNm": "95075414",
+          "commTime": "8秒",
+          "commTimeH5": "00:00:08",
+          "commType": "本地通话",
+          "mealFavorable": "上网套餐",
+          "commFee": "0.00"
+        }
+      },
+      {
+        "tmemRecord": {
+          "startTime": "2016-10-24 19:26:47",
+          "commPlac": "天津市",
+          "commMode": "被叫",
+          "eachOtherNm": "13820274761",
+          "commTime": "58分54秒",
+          "commTimeH5": "00:58:54",
+          "commType": "本地通话",
+          "mealFavorable": "上网套餐",
+          "commFee": "0.00"
+        }
+      },
+      {
+        "tmemRecord": {
+          "startTime": "2016-10-24 09:46:26",
+          "commPlac": "天津市",
+          "commMode": "被叫",
+          "eachOtherNm": "18698173957",
+          "commTime": "43秒",
+          "commTimeH5": "00:00:43",
+          "commType": "本地通话",
+          "mealFavorable": "上网套餐",
+          "commFee": "0.00"
+        }
+      },
+      {
+        "tmemRecord": {
+          "startTime": "2016-10-13 11:22:06",
+          "commPlac": "天津市",
+          "commMode": "被叫",
+          "eachOtherNm": "13702128291",
+          "commTime": "10秒",
+          "commTimeH5": "00:00:10",
+          "commType": "本地通话",
+          "mealFavorable": "上网套餐",
+          "commFee": "0.00"
+        }
+      },
+      {
+        "tmemRecord": {
+          "startTime": "2016-10-05 10:12:42",
+          "commPlac": "天津市",
+          "commMode": "被叫",
+          "eachOtherNm": "13821532337",
+          "commTime": "13秒",
+          "commTimeH5": "00:00:13",
+          "commType": "本地通话",
+          "mealFavorable": "上网套餐",
+          "commFee": "0.00"
+        }
+      },
+      {
+        "tmemRecord": {
+          "startTime": "2016-10-01 11:03:52",
+          "commPlac": "天津市",
+          "commMode": "被叫",
+          "eachOtherNm": "13820067841",
+          "commTime": "1分4秒",
+          "commTimeH5": "00:01:04",
+          "commType": "本地通话",
+          "mealFavorable": "上网套餐",
+          "commFee": "0.00"
+        }
+      }
+    ]
+  }
+}

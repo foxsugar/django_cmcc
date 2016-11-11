@@ -1,0 +1,53 @@
+{
+  "cid": "lzte60fTxZoayKbS49UjwCiDlrpz3cJKdviiNxyUqL93NdTkd9U657aRgn/AXgUbcRNoRiLQvKVB/oQWmJKpEwCQBBIJ6UQoar5F7SAeXJ8FmWYFf7jpqMcbcxMWG5l1",
+  "cv": "2.3.0",
+  "en": "0",
+  "reqBody": {
+    "billMonth": "2016-10",
+    "cellNum": "13821033039",
+    "page": 1,
+    "tmemType": "03",
+    "unit": 200
+  },
+  "sn": "EVA-TL00",
+  "sp": "1080x1812",
+  "st": "1",
+  "sv": "6.0",
+  "t": "bd0f2906d3d805c2601654a66779cb0a"
+}
+
+
+{
+	"retCode": "000000",
+	"retDesc": "SUCCESS",
+	"rspBody": {
+		"otime": "2016-11-10 16:02:48",
+		"tmemType": "03",
+		"totalCount": "2",
+		"billCycleStartDate": "2016-10-01",
+		"billCycleEndDate": "2016-10-31",
+		"messageList": [{
+			"tmemRecord": {
+				"startTime": "2016-10-16 15:15:54",
+				"commPlac": "国内",
+				"eachOtherNm": "18722173677",
+				"infoType": "短信",
+				"bunessName": "",
+				"meal": "",
+				"commFee": "0.00",
+				"commMode": "发送"
+			}
+		}, {
+			"tmemRecord": {
+				"startTime": "2016-10-16 15:15:53",
+				"commPlac": "国内",
+				"eachOtherNm": "18722173677",
+				"infoType": "短信",
+				"bunessName": "",
+				"meal": "",
+				"commFee": "0.00",
+				"commMode": "发送"
+			}
+		}]
+	}
+}
