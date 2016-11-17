@@ -1,4 +1,5 @@
 from django.db import models
+from mongoengine import *
 
 class Publisher(models.Model):
     name = models.CharField(max_length=30)
@@ -19,5 +20,29 @@ class Book(models.Model):
     publisher = models.ForeignKey(Publisher)
     publication_date = models.DateField()
 
-class Respondents(models.Model):
-    username = models.CharField()
+
+
+class User(Document):
+    email = StringField(required=True)
+    name = StringField()
+
+    first_name = StringField(max_length=50)
+    last_name = StringField(max_length=50)
+
+class Inner(Document):
+    name = StringField()
+    l = ListField()
+
+class Respondents(Document):
+    cell_num = StringField(required=True)
+    info = DictField()
+    fixed_exp = DictField()
+    call = DictField()
+    msg = DictField()
+    net = DictField()
+
+
+    # inner = ReferenceField(Inner)
+
+
+

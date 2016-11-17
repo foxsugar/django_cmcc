@@ -7,9 +7,12 @@ import json
 from django.template import loader
 from django.shortcuts import render
 from testDjango.libs.sendHttp import *
+from testDjango.libs.mongo_util import *
+
 import time
 
 def login(request):
+    # test_mongo()
     """A view of all bands."""
     cellNum = request.POST.get('name')
     passwd = request.POST.get('passwd')
@@ -67,8 +70,9 @@ def get_detail(request):
     page = request.POST.get('page')
     unit = request.POST.get('unit')
 
-    resp_str = get_detail_cmcc(cell_num, tmem_type, month, page, unit)
-    print(resp_str)
-    resp = json.loads(resp_str)
-    print(resp)
-    return render(request, 'main.html', resp)
+    # resp_str = get_detail_cmcc(cell_num, tmem_type, month, page, unit)
+    get_all_detail(cell_num)
+    # print(resp_str)
+    # resp = json.loads(resp_str)
+    # print(resp)
+    return render(request, 'main.html', '')

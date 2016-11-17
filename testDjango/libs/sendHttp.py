@@ -9,9 +9,23 @@ from bs4 import BeautifulSoup
 import time
 import datetime
 import calendar
+import redis
+from django.core import serializers
+import zlib
+from functools import wraps
+import math
+from testDjango.apps.models import *
 
 COOKIES = {}
+REDIS = redis.Redis(host='192.168.139.129', port=6379, db=0, password='123456')
 MONTH_NUM = 6
+PAGE_NUM = 200
+conn = connect('test')
+DETAIL_TYPE = {'fixed_exp': ['01', 'fixedExpList'],
+               'call': ['02', 'callList'],
+               'msg': ['03', 'messageList'],
+               'net': ['04', 'netPlayList']
+               }
 
 
 def login_cmcc(cell_num, passwd):
@@ -63,8 +77,6 @@ def sendMsg_cmcc(cell_num):
     return handle_response(cell_num, response)
 
 
-
-
 def verify_msg_cmcc(cell_num, passwd, msg):
     url = 'https://clientaccess.10086.cn/biz-orange/LN/tempIdentCode/getTmpIdentCode'
     data = get_req_root()
@@ -96,9 +108,14 @@ def get_detail_cmcc(cell_num, tmem_type, month, page, unit):
         'unit': unit
     }
     data['reqBody'] = req_body
+    headers = {
+        'Accept-Encoding': 'gzip',
+        'Content-Type': 'application/Json',
+        'Connection': 'Keep-Alive',
+        'Content-Encoding': 'UTF-8',
+        'Cookie2': '$Version=1'
+    }
     postdata = bytes(json.dumps(data), 'utf8')
-    headers = create_headers(cell_num)
-    headers['Cookie2'] = '$Version=1'
 
     request = urllib.request.Request(url, postdata, headers=headers, method='POST')
     cj = get_coodiejar(cell_num)
@@ -109,7 +126,48 @@ def get_detail_cmcc(cell_num, tmem_type, month, page, unit):
 
 
 def get_all_detail(cell_num):
-    t = time.time()
+    respondent_list = Respondents.objects.filter(cell_num=cell_num)
+    if len(respondent_list) > 1:
+        respondent = respondent_list[0]
+    else:
+        respondent = Respondents()
+
+    for detail in DETAIL_TYPE:
+        detail_type = DETAIL_TYPE[detail][0]
+        list_month = get_in_recent_month(6)
+        #测试用 只查一个月
+        # list_month = ['2016-10']
+        for month in list_month:
+            rsp_str = get_detail_cmcc(cell_num, detail_type, month, 1, PAGE_NUM)
+            print(rsp_str)
+            rsp = json.loads(rsp_str)
+            if rsp.get('retCode') == '000000' and rsp.get('rspBody') is not None:
+                set_detail_by_response(respondent, month, detail, rsp_str)
+                total_count = int(rsp.get('rspBody').get('totalCount'))
+                page_size = math.ceil(total_count / (PAGE_NUM + 1))
+                for i in range(2, page_size + 1):
+                    rsp_str1 = get_detail_cmcc(cell_num, detail_type, month, i, PAGE_NUM)
+                    print(rsp_str1)
+                    set_detail_by_response(respondent, month, detail, rsp_str1)
+                    time.sleep(2)
+
+    """保存"""
+    respondent.cell_num = cell_num
+    respondent.save()
+
+
+"""根据http返回储存"""
+def set_detail_by_response(respondent, month, detail, rsp_str):
+    detail_rsp_name = DETAIL_TYPE[detail][1]
+    rsp = json.loads(rsp_str)
+    d = getattr(respondent, detail)
+    if rsp.get('rspBody') is not None and rsp.get('rspBody').get(detail_rsp_name) is not None:
+        tmp_list = rsp.get('rspBody').get(detail_rsp_name)
+        if d is not None:
+            if d.get(month) is not None:
+                d[month].extend(tmp_list)
+            else:
+                d[month] = [tmp_list]
 
 
 def get_cid():
@@ -129,10 +187,22 @@ def get_passwd(passwd):
 
 
 def get_coodiejar(cell_num):
+    """获得cookiejar"""
     if COOKIES.get(cell_num) is None:
         cj = http.cookiejar.CookieJar()
+        # data = serializers.serialize("json", cj)
+
+        # print(type(data), data)
+        # j = json.dumps(cj)
+        # print(j)
+        # REDIS.set(cell_num, json.dumps(cj))
         COOKIES[cell_num] = cj
-    return COOKIES.get(cell_num)
+
+    # print(eval(REDIS.get(cell_num)))
+    # REDIS.get(cell_num)
+    # print(eval(REDIS.get(cell_num)))
+    # return json.loads(eval(REDIS.get(cell_num)))
+    return COOKIES[cell_num]
 
 
 def handle_response(cell_num, response):
@@ -142,14 +212,18 @@ def handle_response(cell_num, response):
     if response is not None:
         # 是否压缩
         if response.headers.get('Content-Encoding') == 'gzip':
-            html = gzip.decompress(the_page).decode("utf-8")
+            # html = gzip.decompress(the_page).decode("utf-8")
+            html = zlib.decompress(the_page, 16 + zlib.MAX_WBITS).decode("utf-8")
         else:
             html = the_page.decode('utf-8')
+            # cookie
+            # REDIS.set(cell_num, cj)
 
     return html
 
 
 def create_headers(cell_num):
+    """创建heraders"""
     headers = {'Accept-Encoding': 'gzip',
                'Content-Type': 'application/Json',
                'Connection': 'Keep-Alive',
@@ -159,11 +233,11 @@ def create_headers(cell_num):
     return headers
 
 
-def handle_request_headers(cell_num, headers):
-    """添加cookie"""
-    if headers is not None:
-        if COOKIES.get(cell_num) is not None:
-            headers['Set-Cookie'] = COOKIES.get(cell_num)
+# def handle_request_headers(cell_num, headers):
+#     """添加cookie"""
+#     if headers is not None:
+#         if COOKIES.get(cell_num) is not None:
+#             headers['Set-Cookie'] = COOKIES.get(cell_num)
 
 
 def get_req_root():
@@ -187,10 +261,10 @@ def get_in_recent_month(num):
     now_month = int(now.strftime('%m'))
 
     for i in range(0, num):
+        month_list.append(formart_month(now_year, now_month))
         if now_month <= 0:
             now_month = 12
             now_year -= 1
-            month_list.append(formart_month(now_year, now_month))
         now_month -= 1
     return month_list
 
@@ -218,4 +292,9 @@ if __name__ == '__main__':
     # print(int('04'))
     # now = datetime.datetime.now()
     # int(now.strftime('%Y'))
-    get_in_recent_month(6)
+    # get_in_recent_month(6)
+
+    d = {'a': []}
+
+    d.get('a').extend([1, 2, 3])
+    print(d)

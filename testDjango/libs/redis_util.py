@@ -1,0 +1,20 @@
+# coding:utf-8
+import redis
+
+
+redisUtil = redis.Redis(host='192.168.139.129', port=6379, db=0, password='123456')
+
+def test():
+    host = '192.168.139.129'
+    # host = '192.168.139.255'
+
+    redisUtil.set('guo', 'shuai')
+    cj = {}
+    cj['1'] = 1
+    redisUtil.set('guo', cj)
+    redisUtil.set('guo', 'a')
+    print(redisUtil.get('guo').decode('utf-8'))
+    print(eval(redisUtil.get('guo')))
+
+if __name__ == '__main__':
+    str = {"retCode":"000000","retDesc":"SUCCESS","rspBody":{"otime":"2016-11-17 15:09:34","tmemType":"02","totalCount":"16","billCycleStartDate":"2016-10-01","billCycleEndDate":"2016-10-31","callList":[{"tmemRecord":{"startTime":"2016-10-27 18:52:54","commPlac":"天津市","commMode":"主叫","eachOtherNm":"18622052073","commTime":"47秒","commTimeH5":"00:00:47","commType":"本地通话","mealFavorable":"上网套餐18","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-27 18:16:09","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13011178976","commTime":"20秒","commTimeH5":"00:00:20","commType":"京津冀通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-27 17:28:38","commPlac":"天津市","commMode":"被叫","eachOtherNm":"95075414","commTime":"8秒","commTimeH5":"00:00:08","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-27 15:17:06","commPlac":"天津市","commMode":"被叫","eachOtherNm":"02155002098","commTime":"1分42秒","commTimeH5":"00:01:42","commType":"京津冀通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-25 11:24:36","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13702128291","commTime":"8秒","commTimeH5":"00:00:08","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-24 19:26:47","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13820274761","commTime":"58分54秒","commTimeH5":"00:58:54","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-24 09:46:26","commPlac":"天津市","commMode":"被叫","eachOtherNm":"18698173957","commTime":"43秒","commTimeH5":"00:00:43","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-21 10:34:27","commPlac":"天津市","commMode":"被叫","eachOtherNm":"15722064129","commTime":"9秒","commTimeH5":"00:00:09","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-20 11:22:30","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13702128291","commTime":"7秒","commTimeH5":"00:00:07","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-18 11:19:16","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13602112543","commTime":"8秒","commTimeH5":"00:00:08","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-13 11:22:06","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13702128291","commTime":"10秒","commTimeH5":"00:00:10","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-11 11:15:59","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13702128291","commTime":"8秒","commTimeH5":"00:00:08","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-10 11:16:10","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13602112543","commTime":"8秒","commTimeH5":"00:00:08","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-08 11:16:08","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13602112543","commTime":"9秒","commTimeH5":"00:00:09","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-05 10:12:42","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13821532337","commTime":"13秒","commTimeH5":"00:00:13","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}},{"tmemRecord":{"startTime":"2016-10-01 11:03:52","commPlac":"天津市","commMode":"被叫","eachOtherNm":"13820067841","commTime":"1分4秒","commTimeH5":"00:01:04","commType":"本地通话","mealFavorable":"上网套餐","commFee":"0.00"}}]}}
