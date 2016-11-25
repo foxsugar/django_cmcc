@@ -76,3 +76,18 @@ def get_detail(request):
     # resp = json.loads(resp_str)
     # print(resp)
     return render(request, 'main.html', '')
+
+
+def show(request):
+    context = {'a':'a'}
+    respondents = Respondents.objects.filter(cell_num='13821033039')
+    respondent = {}
+    data = {}
+    if len(respondents) >=1:
+        respondent = respondents[0]
+        json = respondent.to_json()
+        data['data'] = json
+        print(json)
+
+    return render(request, 'show.html', data)
+    # return render(request, 'show.html', data,content_type="application/json")

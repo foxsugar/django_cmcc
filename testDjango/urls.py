@@ -23,5 +23,6 @@ urlpatterns = [
     url(r'^login$', views.login, name='index'),
     url(r'^verify_msg$', views.verify_msg, name='verify_msg'),
     url(r'^getDetail$', views.get_detail, name='getDetail'),
+    url(r'^show$', views.show, name='show'),
 ]
 
