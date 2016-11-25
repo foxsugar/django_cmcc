@@ -468,8 +468,8 @@ migu_html = '''<!DOCTYPE html>
 </body>
 </html>'''
 
-BLOCK_START = ['{', '(']
-BLOCK_END = ['}', ')']
+BLOCK_START = ['{']
+BLOCK_END = ['}']
 
 
 def parse():
@@ -479,19 +479,31 @@ def parse():
     print(str1)
     find_code_block(index)
 
-
+"""migu init"""
 def parse_migu_init():
     code = find_code_block(migu_html,'migusdk.init(')
     # print(code)
 
 
     # 将正则表达式编译成Pattern对象
-    pattern = re.compile(r"\*http\*;")
-
+    pattern = re.compile(r"http.*?\;")
     # 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回None
     match = pattern.search(code)
     if match:
         print(match.group())
+
+"""migu change img"""
+def parse_change_img():
+    code = find_code_block(migu_html, 'function changeImg(){')
+    # print(code)
+    # 将正则表达式编译成Pattern对象
+    pattern = re.compile(r"http.*?\;")
+    # 使用Pattern匹配文本，获得匹配结果，无法匹配时将返回None
+    match = pattern.search(code)
+    if match:
+        result = match.group()
+        result = result.replace('"', '').replace('+','').replace('\'','').replace(';','')
+        print(result)
 
 
 """找到代码块 todo暂时没考虑注释情况"""
@@ -521,5 +533,6 @@ def find_code_block(html_str, code_str):
 
 if __name__ == '__main__':
     parse_migu_init()
+    parse_change_img()
     # s = 'abc'
     # print(s[0:2])
